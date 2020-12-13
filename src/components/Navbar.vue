@@ -2,7 +2,7 @@
     <section class="navbar-container">
         <b-navbar toggleable="md" type="dark" variant="primary" fixed="top">
             <b-nav-toggle target="nav_collapse"></b-nav-toggle>
-                <b-navbar-brand to="/">Team247联系人管理</b-navbar-brand>
+                <b-navbar-brand to="/">通讯录</b-navbar-brand>
                 <b-collapse is-nav id="nav_collapse">
                     <b-nav is-nav-bar class="ml-auto">
                         <b-nav-item to="/login"  v-if="!isLogin">登录</b-nav-item>
