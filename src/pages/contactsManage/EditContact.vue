@@ -32,6 +32,28 @@
                                         请输入至少1个字符
                                     </b-form-feedback>
                                 </b-form-group>
+                                <b-form-group label="手机" label-for="phone">
+                                    <b-form-input id="phone"
+                                                type="number" 
+                                                :state="phoneState"
+                                                v-model.trim="form.phone" 
+                                                placeholder="输入手机号码"
+                                    ></b-form-input>
+                                    <b-form-feedback>
+                                        请输入至少1个字符
+                                    </b-form-feedback>
+                                </b-form-group>
+                                <b-form-group label="qq" label-for="qq">
+                                    <b-form-input id="qq"
+                                                type="number" 
+                                                :state="qqState"
+                                                v-model.trim="form.qq" 
+                                                placeholder="输入qq"
+                                    ></b-form-input>
+                                    <b-form-feedback>
+                                        请输入至少1个字符
+                                    </b-form-feedback>
+                                </b-form-group>
                                 <b-form-group label="邮箱:" label-for="email">
                                     <b-form-input id="email"
                                                 type="email" 
@@ -78,12 +100,16 @@
                 },
                 firstNameState:null,
                 lastNameState:null,
+                phoneState:null,
+                qqState:null,
                 emailState:null,
                 descriptionState:null,
                 form: {
                     id:'',
                     first_name:'',
                     last_name:'',
+                    phone:'',
+                    qq:'',
                     email: '',
                     description: '',
                 },
@@ -119,29 +145,41 @@
             ]),
             // 验证表单
             validateForm(){
-                if(this.form.first_name.length>=1){
-                    this.firstNameState = null;
+                if(this.form.first_name.length >= 1){
+                    this.first_nameState = null;
                     if(this.form.last_name.length >= 1){
                         this.lastNameState = null;
-                        if(this.form.email.length>=1){
-                            this.emailState = null;
-                            if(this.form.description.length >= 1){
-                                this.descriptionState=null;
-                                return true;
+                        if(this.phone.length >= 1){
+                            this.phoneState = null;
+                            if(this.qq.length >= 1){
+                                this.qqState = null;
+                                if(this.email.length >= 1){
+                                    this.emailState = null;
+                                    if(this.description.length >=1){
+                                        this.descriptionState = null;
+                                        return true;
+                                    }else{
+                                        this.descriptionState = 'invalid'
+                                        return false;
+                                    }
+                                }else{
+                                    this.emailState = 'invalid';
+                                    return false;
+                                }
                             }else{
-                                this.descriptionState='invalid'
+                                this.qqState = 'invalid';
                                 return false;
                             }
                         }else{
-                            this.emailState = 'invalid';
+                            this.phoneState = null;
                             return false;
                         }
                     }else{
-                        this.lastNameState='invalid';
+                        this.lastNameState = 'invalid';
                         return false;
                     }
                 }else{
-                    this.firstNameState='invalid';
+                    this.firstNameState = 'invalid';
                     return false;
                 }
             },
@@ -198,6 +236,8 @@
                         id:'',
                         first_name:'',
                         last_name:'',
+                        phone:'',
+                        qq:'',
                         email: '',
                         description: '',
                     }        
